@@ -17,7 +17,7 @@ spec:
   spec:
    containers:
    - name: myapp-app-loadbalancer
-     image: nantenaina181/devops:tagversion
+     image: nantenaina181/pipeline:tagversion
      ports:
      - containerPort: 8080
 
