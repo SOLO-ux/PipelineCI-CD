@@ -30,6 +30,22 @@ pipeline {
             }
         }
 
+	    stage('Snyk Analysis') {
+	steps {
+	      snykSecurity(
+        	snykInstallation: 'Snyk CLI',
+          	snykTokenId: 'snyk-token',
+        	additionalArguments: '--all-projects --detection-depth=3'
+        		)
+      		}
+   	}
+	    stage('Quality Gate') {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
 
 	    stage('Build') {
 		    steps {
