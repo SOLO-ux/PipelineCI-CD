@@ -18,6 +18,18 @@ pipeline {
 		    }
 	    }
 
+	    stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('Sonar-server') {
+                    sh 'mvn sonar:sonar \
+                        -Dsonar.projectKey=MCI \
+                        -Dsonar.projectName="MCI" \
+                        -Dsonar.host.url=http://104.197.85.164:9000 \
+                        -Dsonar.login=sqp_027eb6d97f1b5ed49adc6c78d50e2bf48423326e'
+                }
+            }
+        }
+
 
 	    stage('Build') {
 		    steps {
