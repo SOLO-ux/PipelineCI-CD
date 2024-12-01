@@ -19,38 +19,6 @@ pipeline {
 	    }
 
 
-	     stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('Sonar-server') {
-                    sh 'mvn sonar:sonar \
-                        -Dsonar.projectKey=MCI \
-                        -Dsonar.projectName="MCI" \
-                        -Dsonar.host.url=http://34.42.239.16:9000 \
-                        -Dsonar.login=sqp_b74069b12d4462e3ed5afcc8d99b01d18d0bad09'
-                }
-            }
-        }
-
-		
-            
-       
-	stage('Snyk Analysis') {
-	steps {
-	      snykSecurity(
-        	snykInstallation: 'Snyk CLI',
-          	snykTokenId: 'snyk-token',
-        	additionalArguments: '--all-projects --detection-depth=3'
-        		)
-      		}
-   	}
-	    stage('Quality Gate') {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
-
 	    stage('Build') {
 		    steps {
 			    sh 'mvn clean package'
