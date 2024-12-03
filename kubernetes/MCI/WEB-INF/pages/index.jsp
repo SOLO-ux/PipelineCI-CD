@@ -927,7 +927,7 @@
 
 															<h2 class="elementor-heading-title elementor-size-default">
 
-																Ethical <span style="color:hsl(161, 84%, 50%)">Spice
+																Ethical <span style="color:hsl(0, 100%, 50%)">Spice
 
 
 																	Sourcing</span></h2>
